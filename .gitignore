@@ -1,32 +1,97 @@
-# Prerequisites
-*.d
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+---
 
-# Precompiled Headers
-*.gch
-*.pch
+# 6．`.gitignore`
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+授業リポジトリなら，以下程度から開始するのがよいです．
 
-# Fortran module files
-*.mod
-*.smod
+```gitignore
+# ========================================
+# OS
+# ========================================
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Executables
-*.exe
-*.out
-*.app
+Thumbs.db
+Desktop.ini
+
+
+# ========================================
+# Editor
+# ========================================
+
+.vscode/
+.idea/
+
+*.swp
+*.swo
+*~
+*.bak
+
+
+# ========================================
+# Node / Marp
+# ========================================
+
+node_modules/
+
+.cache/
+.tmp/
+temp/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# ========================================
+# Generated files
+# ========================================
+
+dist/
+build/
+
+*.html
+
+
+# ========================================
+# Environment / secrets
+# ========================================
+
+.env
+.env.*
+!.env.example
+
+*.key
+*.pem
+
+
+# ========================================
+# Private course data
+# ========================================
+
+private/
+internal/
+
+students/
+student-data/
+
+submissions/
+
+grades/
+grading/
+
+exam/
+exams/
+
+answers/
+solutions-private/
+
+
+# ========================================
+# Temporary Processing files
+# ========================================
+
+*.class
