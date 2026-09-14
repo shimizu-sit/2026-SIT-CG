@@ -32,24 +32,24 @@ Processingを用いたプログラミングを通して，
 
 ## Lectures
 
-|  No  |    Day     |         Topic          |                  Slide/Material                  | Remarks |
-| ---: | :--------: | ---------------------- | ------------------------------------------------ | ------- |
+|  No  |    Day     |         Topic          |                  Slide/Material                  |                        Remarks                        |
+| ---: | :--------: | ---------------------- | ------------------------------------------------ | ----------------------------------------------------- |
 |   01 | 2026-09-25 | ガイダンス             | [01-guidance](lectures/01-guidance/)             | 2クラス合同ガイダンス，授業の進め方，評価，クラス分け |
-|   02 | 2026-10-02 | Processingと基本図形   | [02-basic-drawing](lectures/02-basic-drawing/)   | Processingの使い方，座標系，基本構文 |
-|   03 | 2026-10-09 | 繰り返し・条件分岐     | [03-loop-condition](lectures/03-loop-condition/) |         |
-|   04 | 2026-10-16 | アニメーション         | [04-animation](lectures/04-animation/)           |         |
-|   05 | 2026-10-23 | 座標変換               | [05-transformation](lectures/05-transformation/) |         |
-|   06 | 2026-11-06 | 3Dモデル               | [06-3d-model](lectures/06-3d-model/)             |         |
-|   07 | 2026-11-13 | 陰影・照明             | [07-lighting](lectures/07-lighting/)             |         |
-|   08 | 2026-11-20 | 前半まとめ             | [08-review](lectures/08-review/)                 |         |
-|   09 | 2026-11-27 | 物理モデル I           | [09-physics-01](lectures/09-physics-01/)         |         |
-|   10 | 2026-12-04 | 物理モデル II          | [10-physics-02](lectures/10-physics-02/)         |         |
-|   11 | 2026-12-11 | 数学アート I           | [11-math-art-01](lectures/11-math-art-01/)       |         |
-|   12 | 2026-12-18 | 数学アート II          | [12-math-art-02](lectures/12-math-art-02/)       |         |
-|   13 | 2027-01-08 | オリジナル作品制作 I   | [13-project-01](lectures/13-project-01/)         |         |
-|   14 | 2027-01-15 | オリジナル作品制作 II  | [14-project-02](lectures/14-project-02/)         |         |
-|   15 | 2027-01-22 | オリジナル作品制作 III | [15-project-03](lectures/15-project-03/)         |         |
-|   16 | 2027-01-29 | 発表・総評             | [16-presentation](lectures/16-presentation/)     |         |
+|   02 | 2026-10-02 | Processingと基本図形   | [02-basic-drawing](lectures/02-basic-drawing/)   | Processingの使い方，座標系，基本構文                  |
+|   03 | 2026-10-09 | 繰り返し・条件分岐     | [03-loop-condition](lectures/03-loop-condition/) |                                                       |
+|   04 | 2026-10-16 | アニメーション         | [04-animation](lectures/04-animation/)           |                                                       |
+|   05 | 2026-10-23 | 座標変換               | [05-transformation](lectures/05-transformation/) |                                                       |
+|   06 | 2026-11-06 | 3Dモデル               | [06-3d-model](lectures/06-3d-model/)             |                                                       |
+|   07 | 2026-11-13 | 陰影・照明             | [07-lighting](lectures/07-lighting/)             |                                                       |
+|   08 | 2026-11-20 | 前半まとめ             | [08-review](lectures/08-review/)                 |                                                       |
+|   09 | 2026-11-27 | 物理モデル I           | [09-physics-01](lectures/09-physics-01/)         |                                                       |
+|   10 | 2026-12-04 | 物理モデル II          | [10-physics-02](lectures/10-physics-02/)         |                                                       |
+|   11 | 2026-12-11 | 数学アート I           | [11-math-art-01](lectures/11-math-art-01/)       |                                                       |
+|   12 | 2026-12-18 | 数学アート II          | [12-math-art-02](lectures/12-math-art-02/)       |                                                       |
+|   13 | 2027-01-08 | オリジナル作品制作 I   | [13-project-01](lectures/13-project-01/)         |                                                       |
+|   14 | 2027-01-15 | オリジナル作品制作 II  | [14-project-02](lectures/14-project-02/)         |                                                       |
+|   15 | 2027-01-22 | オリジナル作品制作 III | [15-project-03](lectures/15-project-03/)         |                                                       |
+|   16 | 2027-01-29 | 発表・総評             | [16-presentation](lectures/16-presentation/)     |                                                       |
 
 ## Repository Structure
 
