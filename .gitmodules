@@ -1,0 +1,3 @@
+[submodule "themes/marp-themes"]
+	path = themes/marp-themes
+	url = https://github.com/shimizu-sit/marp-themes.git
