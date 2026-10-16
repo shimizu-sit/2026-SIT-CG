@@ -21,14 +21,14 @@ footer: "Computer Graphics | T. Shimizu © 2026"
 
 # 今日の内容
 
-1. [アニメーションと時$$(#sec-animation)
-2. [`setup()` と `draw()$$(#sec-processing)
-3. [フレームと離散時$$(#sec-frame)
-4. [位置と速度によるアニメーショ$$(#sec-motion)
-5. [画面端の処$$(#sec-boundary)
-6. [ランダムなアニメーショ$$(#sec-random)
-7. [パラメータを変化させるアニメーショ$$(#sec-parameter)
-8. [演$$(#sec-exercise)
+1. [アニメーションと時間](#sec-animation)
+2. [`setup()` と `draw()`](#sec-processing)
+3. [フレームと離散時間](#sec-frame)
+4. [位置と速度によるアニメーション](#sec-motion)
+5. [画面端の処理](#sec-boundary)
+6. [ランダムなアニメーション](#sec-random)
+7. [パラメータを変化させるアニメーション](#sec-parameter)
+8. [演習](#sec-exercise)
 
 ---
 
