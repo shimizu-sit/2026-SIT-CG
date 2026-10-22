@@ -42,6 +42,9 @@ Rendererを使用する場合は，授業資料内でその目的を説明する
 - `@marp-team/marp-cli`：**4.5.1**
 - `@marp-team/marp-core`：**4.4.0**
 
+Node.js 24系LTSと，リポジトリの`package.json`に定義されたMarp CLIを使用する．
+Marp CoreはMarp CLIの依存関係として`package-lock.json`で固定する．
+
 確認コマンド：
 
 ```bash
@@ -58,6 +61,7 @@ marp --version
 ### Theme
 
 - Theme：`sit-lecture`
+- CSS：`themes/marp-themes/themes/sit-lecture.css`
 - Submodule：`themes/marp-themes/`
 - Commit：`c9b635d`
 
@@ -87,7 +91,44 @@ Markdownを原本とし，PDFは生成物として扱う．
 
 PDFを直接編集しない．
 
-Marp CLIによる生成方法は，`package.json` 導入後にnpm scriptとして統一する．
+### Node.js / npm
+
+- Node.js：**24.22.1**
+- npm：**11.19.1**
+- Node.js管理方法：`.node-version`で指定し，Node.jsバージョンマネージャーまたは公式配布版で切り替える
+- `package.json`：`engines.node`を`24.x`に固定する
+- `packageManager`：`npm@11.19.1`
+
+Marp CLIは`package.json`の`devDependencies`に定義したローカルインストールを正式な実行環境とする．
+開発者環境にHomebrew版Marpが存在していても，リポジトリの正式ビルド環境とはしない．
+`package-lock.json`はGit管理する．
+
+### PDF生成ブラウザ
+
+Marp CLIはGoogle Chromeを使用する．現在確認できた基準ブラウザは次のとおりである．
+
+- Google Chrome：**155.0.8059.85**
+
+PDF生成スクリプトでは`--browser chrome`を指定する．
+
+### npmによるPDF生成
+
+```bash
+npm install
+npm run build
+npm run build:lectures
+npm run build:assignments
+npm run build:lecture -- lectures/04-animation/04-animation.md
+npm run check
+```
+
+PDF生成には，ローカル画像を読み込むため，次のMarpオプションを使用する．
+
+```text
+--pdf
+--allow-local-files
+--theme themes/marp-themes/themes/sit-lecture.css
+```
 
 ---
 

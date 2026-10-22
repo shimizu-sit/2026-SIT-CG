@@ -66,6 +66,22 @@ https://processing.org/
 
 本授業ではProcessingを使用します．
 
+## Build
+
+MarpによるPDF生成にはNode.js 24系LTSを使用します．初回は依存関係をインストールしてください．
+
+```bash
+npm install
+npm run build
+npm run build:lectures
+npm run build:assignments
+npm run build:lecture -- lectures/04-animation/04-animation.md
+npm run check
+```
+
+講義PDFは`lectures/NN-topic/NN-topic.md`，課題PDFは`assignments/NN/NN.md`から生成します．
+評価用の`README.md`はPDF生成対象に含めません．
+
 ## Important
 
 **試験問題**，**模範解答**，**採点基準**は本リポジトリでは管理していません．
