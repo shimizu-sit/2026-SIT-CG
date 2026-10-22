@@ -2,7 +2,7 @@
 marp: true
 theme: sit-lecture
 paginate: true
-math: katex
+math: mathjax
 html: true
 header: "第4回｜アニメーションの基本 I"
 footer: "Computer Graphics | T. Shimizu © 2026"
@@ -89,7 +89,7 @@ Frame 0 → Frame 1 → Frame 2 → Frame 3 → …
 
 ---
 
-![bg](./assets/apparent_motion.png)
+![bg](./assets/apparent-motion.png)
 
 ---
 
@@ -245,7 +245,7 @@ draw()
 
 # 実行の流れ
 
-![](./assets/setup_draw.png)
+![](./assets/setup-draw.png)
 
 ---
 
@@ -485,7 +485,7 @@ CGアニメーションでは，後者を繰り返し計算します．
 
 ---
 
-![w:1000](./assets/Continuous-time-and-discrete-time.png)
+![w:1000](./assets/continuous-time-and-discrete-time.png)
 
 ---
 
@@ -786,7 +786,7 @@ $$
 
 
 
-![w:900](./assets/Velocity_discretization.png)
+![w:900](./assets/velocity-discretization.png)
 
 ---
 

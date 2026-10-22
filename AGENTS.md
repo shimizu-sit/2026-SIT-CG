@@ -28,6 +28,7 @@ Codexは，この教育方針を維持しながら，教材の作成，修正，
 - 大規模な構成変更を独断で実施しない．
 - 関係のないファイルを変更しない．
 - ユーザが行った未コミットの変更を保持する．
+- 環境およびバージョンに関する正式情報は `docs/environment.md` を正とする．
 
 ---
 
@@ -70,13 +71,18 @@ READMEに記載するリポジトリ構成は，原則として実際に存在�
 
 ## 4.1 基本規則
 
-ファイル名およびディレクトリ名には，原則として以下を使用する．
-
-- 半角英数字
-- ハイフン `-`
-- 小文字
+通常のファイル名およびディレクトリ名には，原則として小文字の半角英数字とハイフン `-` を使用する．
 
 スペース，日本語，全角記号は原則として使用しない．
+
+ただし，Processing Sketchのディレクトリ名およびメイン `.pde` ファイル名は例外とする．
+Processing Sketchでは，小文字英数字とアンダースコア `_` の使用を許可する．
+Sketchディレクトリ名とメイン `.pde` ファイル名は一致させる．
+
+例：
+
+sample_03_01/
+└── sample_03_01.pde
 
 ---
 
@@ -162,11 +168,10 @@ marp: true
 theme: sit-lecture
 paginate: true
 math: mathjax
-html: true
 ---
 ```
 
-必要に応じて `header`，`footer` を追加する．
+`html: true` は必要な資料に限って追加する．必要に応じて `header`，`footer` も追加する．
 
 授業資料では原則として，
 
@@ -463,14 +468,24 @@ Processingサンプルは，授業内容を理解するための教材である�
 
 ## 10.2 Processing環境
 
-授業資料およびサンプルコードの基準環境は，次のとおりとする．
+Processingに関する正式な環境情報は，
+
+```text
+docs/environment.md
+```
+
+を正とする．
+
+現在の基準環境は，次のとおりである．
 
 - Processing：4.5.7
 - Mode：Java
 
 Processing 4.5.7を，教材作成および動作確認に使用する**基準バージョン**とする．
 
-ただし，学生が使用するProcessingのバージョンは必ずしも4.5.7に統一されていない．そのため，教材およびサンプルコードは，可能な範囲でProcessing 4系の一般的なJava Mode環境で動作するように作成する．
+ただし，学生が使用するProcessingのバージョンは必ずしも4.5.7に統一されていない．
+
+そのため，教材およびサンプルコードは，可能な範囲でProcessing 4系の一般的なJava Mode環境で動作するように作成する．
 
 Codexは，Processing 4.5.7で正常に動作することのみを理由として，4.5.7固有の機能へ不用意に依存してはならない．
 
@@ -486,6 +501,7 @@ Codexは，Processing 4.5.7で正常に動作することのみを理由とし�
 
 Processingのバージョン差異を理由に，授業の本質とは関係のない高度な実装を導入しない．
 
+`AGENTS.md` と `docs/environment.md` のProcessingバージョン情報に差異がある場合は，`docs/environment.md` を正とする．
 
 ---
 
@@ -757,6 +773,24 @@ sit-lecture
 
 を使用する．
 
+現在の基準となるsubmoduleコミットは，
+
+```text
+c9b635d
+```
+
+である．
+
+Marpテーマに関する正式な環境情報は，
+
+```text
+docs/environment.md
+```
+
+を正とする．
+
+`AGENTS.md` と `docs/environment.md` でsubmoduleコミットに差異がある場合は，`docs/environment.md` を正とする．
+
 ---
 
 ## 16.1 submoduleの変更
@@ -776,15 +810,22 @@ sit-lecture
 
 ---
 
----
+# 17．Marp実行環境
 
-## 17．Marp実行環境
+Marpに関する正式な環境情報は，
 
-授業資料および課題資料のPDF生成には，次のMarp環境を基準として使用する．
+```text
+docs/environment.md
+```
+
+を正とする．
+
+現在の基準環境は，次のとおりである．
 
 - `@marp-team/marp-cli`：4.5.1
 - `@marp-team/marp-core`：4.4.0
 - Theme：`sit-lecture`
+- Theme submodule commit：`c9b635d`
 
 PDF生成結果の再現性を確保するため，Marp CLIのバージョンを固定する．
 
@@ -801,6 +842,10 @@ Marp CLIまたはMarp Coreを更新する場合は，
 - PDFレイアウトの確認結果
 
 を報告する．
+
+Marpテーマのsubmoduleを更新する場合は，第16.1節の規則にも従う．
+
+`AGENTS.md` と `docs/environment.md` のMarp関連バージョンに差異がある場合は，`docs/environment.md` を正とする．
 
 ---
 
@@ -863,37 +908,32 @@ READMEから参照するファイルは，実在することを確認する．
 
 # 21．環境情報
 
-Processing，Marp，Node.js等の環境情報は，
+Processing，Marp，Node.js，Marpテーマ等の環境情報は，
 
 ```text
 docs/environment.md
 ```
 
-へ集約することを推奨する．
+に集約する．
 
-例：
+`docs/environment.md` を，このリポジトリにおける**環境・バージョン情報の正本**とする．
 
-```markdown
-# Environment
+対象には，少なくとも以下を含む．
 
-## Processing
-
-- Version:
-- Mode: Java
-
-## Marp
-
-- Node.js:
-- @marp-team/marp-cli:
-- Theme: sit-lecture
-
-## Marp theme
-
-- Repository:
-- Commit:
-```
+- Processing
+- Processing Mode
+- Node.js
+- npm
+- `@marp-team/marp-cli`
+- `@marp-team/marp-core`
+- Marpテーマ
+- Marpテーマsubmoduleコミット
 
 値が確認できない場合は推測して記入しない．
+
+環境情報を変更した場合は，まず `docs/environment.md` を更新し，必要に応じて `AGENTS.md` および `README.md` の関連記述も更新する．
+
+`AGENTS.md`，`README.md`，その他の文書に記載されたバージョン情報と `docs/environment.md` に差異がある場合は，原則として `docs/environment.md` を正とする．
 
 ---
 
@@ -911,16 +951,20 @@ docs/environment.md
 
 ## Marp
 
+- `docs/environment.md` で定義された環境を使用している
 - 正しいテーマが指定されている
+- 意図したtheme submoduleコミットが使用されている
 - PDF生成が成功する
 - PDFレイアウトに重大な崩れがない
 
 ## Processing
 
+- `docs/environment.md` に定義された基準環境を確認する
 - Sketchの構造が正しい
 - `.pde` が対応するSketchディレクトリ内に存在する
 - 利用可能な環境では実行確認を行う
 - 教材Markdownとコードが一致する
+- 不要なバージョン依存機能を使用していない
 
 ## Git
 
@@ -1030,16 +1074,18 @@ Git内部データの修復が必要な場合は，
 教材を変更するときは，原則として次の順序で作業する．
 
 1. 対象となる授業ディレクトリを確認する
-2. READMEおよび関連資料を確認する
-3. 前回・今回・次回の授業内容を確認する
-4. 変更対象を特定する
-5. 必要最小限の変更を行う
-6. Processingサンプルとの整合性を確認する
-7. 画像参照を確認する
-8. PDFを再生成する
-9. PDFを確認する
-10. Git差分を確認する
-11. 変更内容と検証結果を報告する
+2. `AGENTS.md` を確認する
+3. `docs/environment.md` を確認する
+4. READMEおよび関連資料を確認する
+5. 前回・今回・次回の授業内容を確認する
+6. 変更対象を特定する
+7. 必要最小限の変更を行う
+8. Processingサンプルとの整合性を確認する
+9. 画像参照を確認する
+10. PDFを再生成する
+11. PDFを確認する
+12. Git差分を確認する
+13. 変更内容と検証結果を報告する
 
 ---
 
@@ -1055,6 +1101,7 @@ Git内部データの修復が必要な場合は，
 - 前後の授業
 - README
 - AGENTS.md
+- `docs/environment.md`
 
 から合理的に判断する．
 
@@ -1073,7 +1120,9 @@ Git内部データの修復が必要な場合は，
 - 模範解答の公開
 - 学生情報の追加
 - Marpテーマの更新
-- Processingのバージョン変更
+- Processingの基準バージョン変更
+- Marp CLIの基準バージョン変更
+- Marp Coreの基準バージョン変更
 - Git submoduleの更新
 - 大規模なファイル再配置
 - Git commit
@@ -1097,6 +1146,20 @@ Git内部データの修復が必要な場合は，
 M lectures/04-animation/04-animation.md
 M lectures/04-animation/04-animation.pdf
 M lectures/04-animation/sample/ex01-basic-animation/ex01-basic-animation.pde
+```
+
+## 使用環境
+
+環境依存の作業を行った場合は，使用した主要環境を必要に応じて報告する．
+
+例：
+
+```text
+- Processing：4.5.7 / Java Mode
+- Marp CLI：4.5.1
+- Marp Core：4.4.0
+- Theme：sit-lecture
+- Theme commit：c9b635d
 ```
 
 ## 検証結果
@@ -1125,10 +1188,13 @@ M lectures/04-animation/sample/ex01-basic-animation/ex01-basic-animation.pde
 
 1. 明示された最新の指示
 2. `AGENTS.md`
-3. 現在の授業資料と教育方針
-4. `README.md`
-5. `docs/` の仕様書
-6. 既存ファイルの慣例
+3. `docs/environment.md` の環境・バージョン情報
+4. 現在の授業資料と教育方針
+5. `README.md`
+6. その他の `docs/` の仕様書
+7. 既存ファイルの慣例
+
+ただし，Processing，Marp，Node.js，Marpテーマなどの**環境・バージョン情報については `docs/environment.md` を正とする**．
 
 複数の情報に矛盾がある場合は，重大な変更を行う前にその矛盾を報告する．
 

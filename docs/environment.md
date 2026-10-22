@@ -57,6 +57,10 @@ marp --version
 
 ### Theme
 
+- Theme：`sit-lecture`
+- Submodule：`themes/marp-themes/`
+- Commit：`c9b635d`
+
 授業資料では原則として，
 
 ```yaml

@@ -55,11 +55,9 @@ Processingを用いたプログラミングを通して，
 
 ```text
 lectures/     各回の講義資料
-examples/     サンプルプログラム
 assignments/  公開可能な課題
-project/      最終制作関連資料
-assets/       共通画像・3Dモデル・データ
-docs/         補足資料
+docs/         環境情報・補足資料
+themes/       Marpテーマsubmodule
 ```
 
 ## Processing
@@ -78,4 +76,4 @@ https://processing.org/
 
 ## License
 
-教材およびプログラムの利用条件については[LICENSE](./LICENSE)および[NOTICE](./NOTICE)を参照してください．
+教材およびプログラムの利用条件については[LICENSE](./LICENSE)を参照してください．
