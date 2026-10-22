@@ -600,6 +600,19 @@ lectures/NN-topic/assets/
 
 授業固有の画像をトップレベルの共通ディレクトリへ無計画に置かない．
 
+`assets/` は講義Markdownから参照する正式な教材画像の保存場所とする．
+
+`sample/` はProcessing Sketchの保存場所とする．
+ただし，Texture MappingなどでSketchの入力画像が必要な場合は，
+必要性を確認したうえで `sample/` 内に画像を保存してよい．
+
+Processing実行時の一時的な出力画像は，原則としてGit管理しない．
+将来的にはSketch内の `output/` に一時出力を保存する方式を推奨する．
+既存Sketchに対して，この方針だけを理由に `output/` を作成したり，コードを変更したりしない．
+
+教材として採用したProcessing生成画像は `assets/` に保存する．
+`assets/` と `sample/` の両方に同一画像を保存しない．
+
 ---
 
 ## 12.2 ファイル名
@@ -668,7 +681,7 @@ rgb-color-space.png
 
 を記録する．
 
-必要に応じて各 `assets/` に，
+各 `assets/` には，原則として，
 
 ```text
 README.md
@@ -680,7 +693,9 @@ README.md
 SOURCES.md
 ```
 
-を配置する．
+を配置する．`SOURCES.md` では，画像ごとに生成元，出典，URL，取得日，
+ライセンス，権利情報，用途を記録する．確認できない情報は推測せず，
+`要確認` と記載する．
 
 Processingや自作コードから生成した画像については，生成元Sketchが分かるようにする．
 
@@ -695,6 +710,9 @@ Processingによって生成した画像とその元となるSketchの対応関�
 同一画像を `assets/` と `sample/` の両方へ重複保存しない．
 
 必要な場合は，どちらを正式な配置場所とするかを明確にする．
+
+`sample/` 内のPNGを一律に禁止しない．Sketchの入力画像など，教材の実行に必要な画像は，
+用途を `SOURCES.md` または関連文書で説明したうえで保存してよい．
 
 ---
 

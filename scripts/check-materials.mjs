@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readdirSync, statSync, existsSync, readFileSync } from "node:fs";
 import { join, relative, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -18,6 +19,20 @@ function walk(directory) {
   return files;
 }
 
+function walkFiles(directory) {
+  const files = [];
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (entry.name === ".git" || entry.name === "node_modules") continue;
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...walkFiles(path));
+    } else if (entry.isFile()) {
+      files.push(path);
+    }
+  }
+  return files;
+}
+
 function relativePath(path) {
   return relative(root, path).split("\\").join("/");
 }
@@ -28,6 +43,10 @@ function isLecture(path) {
 
 function isAssignment(path) {
   return /^assignments\/([0-9]{2})\/\1\.md$/.test(relativePath(path));
+}
+
+function isImage(path) {
+  return /\.(png|jpe?g|gif|webp|svg)$/i.test(path);
 }
 
 function sourceFiles() {
@@ -45,20 +64,76 @@ function checkImages(source) {
   const markdown = readFileSync(source, "utf8");
   const imagePattern = /!\[[^\]]*\]\(\s*<?([^>\s)]+)>?/g;
   const missing = [];
+  const outsideAssets = [];
   for (const match of markdown.matchAll(imagePattern)) {
     const reference = match[1];
     if (/^(https?:|data:|#)/i.test(reference)) continue;
     const localReference = decodeURIComponent(reference.split(/[?#]/, 1)[0]);
     const imagePath = resolve(dirname(source), localReference);
     if (!existsSync(imagePath)) missing.push(reference);
+    if (isLecture(source)) {
+      const relativeToLecture = relative(dirname(source), imagePath)
+        .split("\\")
+        .join("/");
+      if (
+        relativeToLecture !== "assets" &&
+        !relativeToLecture.startsWith("assets/")
+      ) {
+        outsideAssets.push(reference);
+      }
+    }
   }
-  return missing;
+  return { missing, outsideAssets };
+}
+
+function sha256(path) {
+  return createHash("sha256").update(readFileSync(path)).digest("hex");
+}
+
+function duplicateImageWarnings() {
+  const byHash = new Map();
+  for (const path of walkFiles(join(root, "lectures")).filter(isImage)) {
+    const hash = sha256(path);
+    const paths = byHash.get(hash) ?? [];
+    paths.push(path);
+    byHash.set(hash, paths);
+  }
+
+  return [...byHash.entries()]
+    .filter(([, paths]) => paths.length > 1)
+    .map(([hash, paths]) => ({
+      hash,
+      paths: paths.map(relativePath).sort(),
+    }));
+}
+
+function sourcesFailures() {
+  const failures = [];
+  const lecturesRoot = join(root, "lectures");
+  for (const entry of readdirSync(lecturesRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const assets = join(lecturesRoot, entry.name, "assets");
+    if (existsSync(assets) && !existsSync(join(assets, "SOURCES.md"))) {
+      failures.push(`${relativePath(assets)}: SOURCES.md is missing`);
+    }
+  }
+  return failures;
 }
 
 const sources = sourceFiles();
 const failures = [];
 
 for (const source of sources) {
+  const imageCheck = checkImages(source);
+  for (const reference of imageCheck.missing) {
+    failures.push(`${relativePath(source)}: missing local image ${reference}`);
+  }
+  for (const reference of imageCheck.outsideAssets) {
+    failures.push(
+      `${relativePath(source)}: local image is outside assets/: ${reference}`,
+    );
+  }
+
   const pdf = pdfPath(source);
   if (!existsSync(pdf)) {
     failures.push(`${relativePath(source)}: corresponding PDF is missing`);
@@ -71,10 +146,9 @@ for (const source of sources) {
     failures.push(`${relativePath(source)}: PDF is older than Markdown`);
   }
 
-  for (const reference of checkImages(source)) {
-    failures.push(`${relativePath(source)}: missing local image ${reference}`);
-  }
 }
+
+failures.push(...sourcesFailures());
 
 const assignmentReadmes = walk(join(root, "assignments")).filter((path) =>
   /\/README\.md$/.test(path),
@@ -93,7 +167,18 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
+const duplicates = duplicateImageWarnings();
+if (duplicates.length > 0) {
+  console.warn("Image SHA-256 duplicates (warning only):");
+  for (const duplicate of duplicates) {
+    console.warn(`- ${duplicate.hash}`);
+    for (const path of duplicate.paths) console.warn(`  - ${path}`);
+  }
+}
+
 console.log(`Checked ${sources.length} material Markdown file(s).`);
 console.log("- corresponding PDFs exist and are not older than Markdown");
 console.log("- local image references exist");
+console.log("- lecture local image references stay under assets/");
+console.log("- lecture assets/SOURCES.md files exist");
 console.log("- assignment README.md files are excluded");
