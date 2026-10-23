@@ -12,6 +12,7 @@
     "build:lectures": "node scripts/build-marp.mjs lectures",
     "build:assignments": "node scripts/build-marp.mjs assignments",
     "build:lecture": "node scripts/build-marp.mjs lecture",
+    "build:assignment": "node scripts/build-marp.mjs assignment",
     "check": "node scripts/check-materials.mjs"
   },
   "devDependencies": {

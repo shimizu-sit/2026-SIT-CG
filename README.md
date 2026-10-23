@@ -54,10 +54,38 @@ Processingを用いたプログラミングを通して，
 ## Repository Structure
 
 ```text
-lectures/     各回の講義資料
-assignments/  公開可能な課題
-docs/         環境情報・補足資料
+lectures/     授業資料
+assignments/  課題資料
+docs/         環境・運用ドキュメント
+scripts/      Marpビルド・教材検証用スクリプト
 themes/       Marpテーマsubmodule
+```
+
+授業資料は[`lectures/`](lectures/)，課題資料は[`assignments/`](assignments/)に保存します．
+正式な開発・ビルド環境の詳細は[`docs/environment.md`](docs/environment.md)を参照してください．
+
+## Setup
+
+MarpテーマはGit submoduleとして管理しています．初回cloneでは，submoduleも同時に取得してください．
+
+```bash
+git clone --recurse-submodules <repository-url>
+cd 2026-SIT-CG
+```
+
+通常の`git clone`を行った場合や，既存のcloneでsubmoduleが未初期化の場合は，次を実行します．
+
+```bash
+git submodule update --init --recursive
+```
+
+Node.jsはリポジトリの`.node-version`を基準に管理しています．現在の基準環境はNode.js 24.22.1，npm 11.19.1です．
+環境の詳細と確認方法は[`docs/environment.md`](docs/environment.md)を参照してください．
+
+`package-lock.json`に固定された依存関係を使用するため，初回の依存パッケージのインストールには次を使用します．
+
+```bash
+npm ci
 ```
 
 ## Processing
@@ -68,19 +96,35 @@ https://processing.org/
 
 ## Build
 
-MarpによるPDF生成にはNode.js 24系LTSを使用します．初回は依存関係をインストールしてください．
+MarpによるPDF生成にはNode.js 24系LTSを使用します．初回は，先に「Setup」の手順でsubmoduleと依存パッケージを準備してください．
 
 ```bash
-npm install
 npm run build
 npm run build:lectures
 npm run build:assignments
-npm run build:lecture -- lectures/04-animation/04-animation.md
+npm run build:lecture -- lectures/05-transformation/05-transformation.md
+npm run build:assignment -- assignments/05/05.md
 npm run check
 ```
 
+`npm run build`，`npm run build:lectures`，`npm run build:assignments`，`npm run build:lecture`，`npm run build:assignment`は，対応するMarkdownからPDFを生成し，既存PDFを再生成・更新します．
 講義PDFは`lectures/NN-topic/NN-topic.md`，課題PDFは`assignments/NN/NN.md`から生成します．
 評価用の`README.md`はPDF生成対象に含めません．
+
+`npm run check`は，PDF，画像参照，講義用assets，課題用READMEの扱いを検証します．
+
+## Submodule Operations
+
+通常の教材作成時に，テーマsubmoduleを最新版へ更新する必要はありません．親リポジトリが記録しているcommitをそのまま使用してください．
+
+テーマリポジトリの最新版を親リポジトリへ反映する場合は，テーマ側で変更をcommit・pushした後，親リポジトリで次を実行します．
+
+```bash
+git submodule update --remote themes/marp-themes
+git status
+```
+
+submoduleの参照commitが変更されたことを確認したら，親リポジトリ側のgitlink更新をcommitします．テーマsubmodule自体の更新は，教材への影響を確認してから行ってください．
 
 ## Important
 

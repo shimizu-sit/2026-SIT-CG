@@ -48,7 +48,7 @@ Marp CoreはMarp CLIの依存関係として`package-lock.json`で固定する�
 確認コマンド：
 
 ```bash
-marp --version
+npm exec -- marp --version
 ```
 
 想定される表示：
@@ -114,11 +114,12 @@ PDF生成スクリプトでは`--browser chrome`を指定する．
 ### npmによるPDF生成
 
 ```bash
-npm install
+npm ci
 npm run build
 npm run build:lectures
 npm run build:assignments
-npm run build:lecture -- lectures/04-animation/04-animation.md
+npm run build:lecture -- lectures/05-transformation/05-transformation.md
+npm run build:assignment -- assignments/05/05.md
 npm run check
 ```
 

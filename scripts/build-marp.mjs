@@ -72,6 +72,17 @@ function selectFiles(mode, argument) {
     return [source];
   }
 
+  if (mode === "assignment") {
+    if (!argument) {
+      throw new Error("Usage: npm run build:assignment -- assignments/NN/NN.md");
+    }
+    const source = resolve(root, argument);
+    if (!existsSync(source) || !isAssignment(source)) {
+      throw new Error(`Not an assignment Markdown path: ${argument}`);
+    }
+    return [source];
+  }
+
   throw new Error(`Unknown build target: ${mode}`);
 }
 
