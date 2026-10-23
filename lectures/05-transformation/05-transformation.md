@@ -779,18 +779,3 @@ translate / rotate / scale
 は，3Dでも重要な考え方になります．
 
 `translate()`や`rotate()`を使って，3D空間の中のモデルを配置します．
-
----
-
-# 参考：第5回サンプル
-
-```text
-sample/sample_05_01_translate/
-sample/sample_05_02_rotate/
-sample/sample_05_03_scale/
-sample/sample_05_04_transform_order/
-sample/sample_05_05_rotation_animation/
-sample/sample_05_06_push_pop/
-```
-
-各Sketchは，1つのディレクトリと1つのメイン`.pde`ファイルで構成しています．
