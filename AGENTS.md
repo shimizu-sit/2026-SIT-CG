@@ -748,7 +748,28 @@ PDFを直接編集しない．
 
 ---
 
-## 15.3 公開してはいけない情報
+## 15.3 課題PDFの生成
+
+課題資料は通常Markdownを原本とし，次の流れでPDFを生成する．
+
+```text
+normal Markdown
+→ VS Code Markdown PDF
+→ A4 PDF
+```
+
+- Marp front matterを使用しない．
+- Marpで課題PDFを生成しない．
+- 明示改ページには`<div class="page"></div>`を使用する．
+- VS Codeの`Markdown PDF: Export (pdf)`による手動Exportを正式手順とする．
+- `convertOnSave`には依存しない．
+- PDF生成方法を独断で別方式へ置き換えない．
+- Markdown PDFを実行できない環境では，「手動Exportが必要」と報告する．PDFを生成したと偽らない．
+- Markdownを変更した場合はPDFも再生成し，生成後は目視確認する．
+
+---
+
+## 15.4 公開してはいけない情報
 
 このリポジトリが将来公開される可能性を考慮し，以下を原則として保存しない．
 
@@ -765,7 +786,7 @@ PDFを直接編集しない．
 
 ---
 
-## 15.4 学生向け資料と教員向け資料
+## 15.5 学生向け資料と教員向け資料
 
 学生向け課題文と教員向け評価資料を同一ファイルに混在させない．
 
@@ -869,7 +890,17 @@ Marpテーマのsubmoduleを更新する場合は，第16.1節の規則にも従
 
 # 18．PDF生成
 
-Markdownを変更した場合，対応するPDFを再生成する．
+講義資料は，次の流れで生成する．
+
+```text
+Marp Markdown
+→ Marp CLI
+→ PDF
+```
+
+講義資料ではMarp front matterを使用し，Marp CLIでPDFを生成する．Markdownを変更した場合はPDFを再生成する．
+
+課題資料の生成手順は第15.3節に従う．
 
 PDFファイル名は原則として元Markdownと一致させる．
 
@@ -974,6 +1005,13 @@ docs/environment.md
 - 意図したtheme submoduleコミットが使用されている
 - PDF生成が成功する
 - PDFレイアウトに重大な崩れがない
+
+## Markdown PDF
+
+- 課題MarkdownにMarp front matterやMarp専用ディレクティブがない
+- VS Codeの`Markdown PDF: Export (pdf)`でPDFを手動Exportした
+- A4縦で出力されている
+- PDFの目視確認を行った
 
 ## Processing
 

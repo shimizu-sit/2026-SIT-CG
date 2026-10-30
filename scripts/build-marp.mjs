@@ -40,16 +40,8 @@ function isLecture(path) {
   return /^lectures\/([0-9]{2}-[a-z0-9-]+)\/\1\.md$/.test(relativePath(path));
 }
 
-function isAssignment(path) {
-  return /^assignments\/([0-9]{2})\/\1\.md$/.test(relativePath(path));
-}
-
 function lectureFiles() {
   return walk(join(root, "lectures")).filter(isLecture).sort();
-}
-
-function assignmentFiles() {
-  return walk(join(root, "assignments")).filter(isAssignment).sort();
 }
 
 function outputPath(source) {
@@ -58,8 +50,6 @@ function outputPath(source) {
 
 function selectFiles(mode, argument) {
   if (mode === "lectures") return lectureFiles();
-  if (mode === "assignments") return assignmentFiles();
-  if (mode === "all") return [...lectureFiles(), ...assignmentFiles()];
 
   if (mode === "lecture") {
     if (!argument) {
@@ -72,22 +62,17 @@ function selectFiles(mode, argument) {
     return [source];
   }
 
-  if (mode === "assignment") {
-    if (!argument) {
-      throw new Error("Usage: npm run build:assignment -- assignments/NN/NN.md");
-    }
-    const source = resolve(root, argument);
-    if (!existsSync(source) || !isAssignment(source)) {
-      throw new Error(`Not an assignment Markdown path: ${argument}`);
-    }
-    return [source];
-  }
-
   throw new Error(`Unknown build target: ${mode}`);
 }
 
-const mode = process.argv[2] ?? "all";
+const mode = process.argv[2] ?? "lectures";
 const argument = process.argv[3];
+
+if (mode === "assignment" || mode === "assignments") {
+  console.error("Assignments use Markdown PDF, not Marp.");
+  console.error("Open the assignment Markdown file in VS Code and run: Markdown PDF: Export (pdf)");
+  process.exit(1);
+}
 
 if (!existsSync(marpCommand)) {
   throw new Error("Local Marp CLI is not installed. Run: npm install");
