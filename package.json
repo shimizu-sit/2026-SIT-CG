@@ -8,11 +8,11 @@
   },
   "packageManager": "npm@11.19.1",
   "scripts": {
-    "build": "npm run build:lectures && npm run build:assignments",
+    "build": "npm run build:lectures",
     "build:lectures": "node scripts/build-marp.mjs lectures",
-    "build:assignments": "node scripts/build-marp.mjs assignments",
+    "build:assignments": "node scripts/assignment-pdf-notice.mjs",
     "build:lecture": "node scripts/build-marp.mjs lecture",
-    "build:assignment": "node scripts/build-marp.mjs assignment",
+    "build:assignment": "node scripts/assignment-pdf-notice.mjs",
     "check": "node scripts/check-materials.mjs"
   },
   "devDependencies": {

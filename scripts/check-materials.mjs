@@ -86,6 +86,18 @@ function checkImages(source) {
   return { missing, outsideAssets };
 }
 
+function assignmentMarpDirectiveFailures(source) {
+  const markdown = readFileSync(source, "utf8");
+  const failures = [];
+  if (/(?:^|\n)\s*marp\s*:\s*true\s*(?:\r?\n|$)/i.test(markdown)) {
+    failures.push(`${relativePath(source)}: assignments must not use marp: true`);
+  }
+  if (/<!--\s*_class\s*:/i.test(markdown)) {
+    failures.push(`${relativePath(source)}: assignments must not use Marp _class directives`);
+  }
+  return failures;
+}
+
 function sha256(path) {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
 }
@@ -132,6 +144,10 @@ for (const source of sources) {
     failures.push(
       `${relativePath(source)}: local image is outside assets/: ${reference}`,
     );
+  }
+
+  if (isAssignment(source)) {
+    failures.push(...assignmentMarpDirectiveFailures(source));
   }
 
   const pdf = pdfPath(source);
@@ -182,3 +198,4 @@ console.log("- local image references exist");
 console.log("- lecture local image references stay under assets/");
 console.log("- lecture assets/SOURCES.md files exist");
 console.log("- assignment README.md files are excluded");
+console.log("- assignment Markdown files do not use Marp directives");

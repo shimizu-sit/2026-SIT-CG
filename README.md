@@ -94,21 +94,39 @@ https://processing.org/
 
 本授業ではProcessingを使用します．
 
-## Build
+## PDF Build
 
-MarpによるPDF生成にはNode.js 24系LTSを使用します．初回は，先に「Setup」の手順でsubmoduleと依存パッケージを準備してください．
+### 講義資料
+
+講義資料はMarp Markdownを原本とし，Node.js 24系LTS上のMarp CLIでPDFを生成します．初回は，先に「Setup」の手順でsubmoduleと依存パッケージを準備してください．
 
 ```bash
 npm run build
 npm run build:lectures
-npm run build:assignments
 npm run build:lecture -- lectures/05-transformation/05-transformation.md
-npm run build:assignment -- assignments/05/05.md
+```
+
+`npm run build`は講義資料だけをビルドします．講義PDFは`lectures/NN-topic/NN-topic.md`から生成します．
+
+### 課題資料
+
+課題資料は通常Markdownを原本とし，VS Codeの拡張機能`yzane.markdown-pdf`でPDFを手動Exportします．npmやMarp CLIでは課題PDFを生成しません．
+
+1. `assignments/NN/NN.md`をVS Codeで開く．
+2. `Markdown PDF: Export (pdf)`を実行する．
+3. `assignments/NN/NN.pdf`が生成されたことを確認する．
+4. PDFを目視確認する．
+5. `npm run check`を実行する．
+
+課題PDFはA4縦で出力し，`convertOnSave`には依存しません．`npm run build:assignments`と`npm run build:assignment`は誤操作防止のため案内だけを表示して非0で終了します．
+
+### 共通検証
+
+```bash
 npm run check
 ```
 
-`npm run build`，`npm run build:lectures`，`npm run build:assignments`，`npm run build:lecture`，`npm run build:assignment`は，対応するMarkdownからPDFを生成し，既存PDFを再生成・更新します．
-講義PDFは`lectures/NN-topic/NN-topic.md`，課題PDFは`assignments/NN/NN.md`から生成します．
+Markdownを変更した場合は対応するPDFも再生成し，PDFはGit管理します．
 評価用の`README.md`はPDF生成対象に含めません．
 
 `npm run check`は，PDF，画像参照，講義用assets，課題用READMEの扱いを検証します．

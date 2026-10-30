@@ -117,11 +117,11 @@ PDF生成スクリプトでは`--browser chrome`を指定する．
 npm ci
 npm run build
 npm run build:lectures
-npm run build:assignments
 npm run build:lecture -- lectures/05-transformation/05-transformation.md
-npm run build:assignment -- assignments/05/05.md
 npm run check
 ```
+
+これらのコマンドは講義資料のPDF生成に使用する．`npm run build`は講義資料だけをビルドする．
 
 PDF生成には，ローカル画像を読み込むため，次のMarpオプションを使用する．
 
@@ -130,6 +130,27 @@ PDF生成には，ローカル画像を読み込むため，次のMarpオプシ�
 --allow-local-files
 --theme themes/marp-themes/themes/sit-lecture.css
 ```
+
+---
+
+## Markdown PDF
+
+課題資料のPDFは，VS CodeのMarkdown PDF拡張機能で手動Exportする．
+
+- VS Code
+- Markdown PDF
+- Extension：`yzane.markdown-pdf`
+- Baseline version：**2.2.0**
+- Output：PDF
+- Format：A4 portrait
+- Export command：`Markdown PDF: Export (pdf)`
+- `convertOnSave`：`false`
+- Shared CSS：`styles/markdown-pdf/assignment.css`
+- Workspace settings：`.vscode/settings.json`
+- `markdown-pdf.highlightStyle`：`github-dark-dimmed.css`
+- `markdown-pdf.breaks`：`true`
+
+課題MarkdownはMarp front matterを使用しない．課題PDFはMarp CLIで生成せず，`Markdown PDF: Export (pdf)`を実行してから目視確認する．
 
 ---
 

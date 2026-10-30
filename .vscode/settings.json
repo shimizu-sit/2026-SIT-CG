@@ -1,0 +1,24 @@
+{
+    "markdown.marp.html": "all",
+    "markdown.marp.mathTypesetting": "katex",
+    "markdown.marp.themes": [
+        "./themes/marp-themes/themes/sit-lecture.css",
+    ],
+    "markdown-pdf.styles": [
+        "styles/markdown-pdf/assignment.css"
+    ],
+    "markdown-pdf.stylesRelativePathFile": false,
+    "markdown-pdf.headerTemplate": "<div></div>",
+    "markdown-pdf.highlightStyle": "github-dark-dimmed.css",
+    "markdown-pdf.breaks": true,
+    "markdown-pdf.convertOnSave": false,
+    "markdown-pdf.type": [
+        "pdf"
+    ],
+    "markdown-pdf.format": "A4",
+    "markdown-pdf.orientation": "portrait",
+    "markdown-pdf.margin.top": "1.5cm",
+    "markdown-pdf.margin.bottom": "1cm",
+    "markdown-pdf.margin.left": "1cm",
+    "markdown-pdf.margin.right": "1cm"
+}
